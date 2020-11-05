@@ -44,13 +44,13 @@ const createEmployee = () => {
             newTeam();
         })
         function newTeam() {
-            inquiry.prompt([
+            inquirer.prompt([
                 {
                     type: "list",
                     name: "memberChoice",
                     message: "Whats your new team members role?",
                     choices: [
-                        "Eningeer",
+                        "Engineer",
                         "Intern",
                         "No new entries to add"
                     ]
@@ -95,6 +95,7 @@ const createEmployee = () => {
                     const engineer = new Engineer(answers.engineerName, answers.engineerEmail, answers.engineerID, answers.engineerGithub)
                     teamMembers.push(engineer)
                     arrayID.push(answers.engineerID)
+                    newTeam();
                 })
             }
             function newIntern() {
@@ -111,8 +112,8 @@ const createEmployee = () => {
                     },
                     {
                         type: "input",
-                        name: "internGithub",
-                        message: "Github username?",
+                        name: "internID",
+                        message: "What is your ID?",
                     },
                     {
                         type: "input",
@@ -120,9 +121,10 @@ const createEmployee = () => {
                         message: "College Name?",
                     }
                 ]).then((answers) => {
-                    const intern = new Intern(answers.internName, answers.internEmail, answers.internID, answers.internGithub, answers.internSchool)
+                    const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool)
                     teamMembers.push(intern)
                     arrayID.push(answers.internID)
+                    newTeam();
                 })
             }
         }
